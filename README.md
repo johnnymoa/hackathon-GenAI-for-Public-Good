@@ -1,64 +1,82 @@
-# Hackathon GenAI for Public Good 🤖  
+# Albertine - Web Accessibility Assistant - GenAI Hackathon for Public Good
 
-📙 **Retrouvez le Guide du participant en cliquant** [ici](https://alliance.numerique.gouv.fr/hackathon/participant-guide-fr/)  
+A Chrome extension designed to make the internet more accessible and less overwhelming by providing AI-powered navigation and accessibility features.
 
-## 👩‍💻 Comment participer ?  
+## 🌟 Project Overview
 
-Pour participer au Hackathon, vous devez créer un dépôt public (vous pouvez par exemple partir d'un fork de ce dépôt).  
+This project was developed for the GenAI Hackathon for Public Good with the mission of making the web more accessible to everyone. By combining the power of various AI models and accessibility tools, we've created a solution that helps users navigate and interact with web content more effectively.
 
-Votre dépôt servira pour l'évaluation de votre projet à l'issue du Hackathon !  
+## ✨ Features
 
-Bon courage 🔥 !  
+- **Smart Web Navigation**: Helps users navigate complex websites with AI-powered assistance
+- **Voice Interaction**: Supports voice commands and text-to-speech functionality
+- **Speech-to-Text**: Converts spoken words to text using   Whisper 
+- **AI-Powered Assistance**: Leverages Mistral or Albert API for intelligent content processing
+- **Text-to-Speech**: Uses Piper for high-quality voice synthesis
+
+## 🛠️ Technical Stack
+
+### Frontend
+- Google Chrome Extension
+- HTML/CSS/JavaScript
+- Chrome Extension APIs
+
+### Backend
+- Flask (Python web framework)
+- AI Models and APIs:
+  - Mistral/Albert API for inference
+  - OpenAI Whisper/Albert API for speech-to-text
+  - Piper for text-to-speech synthesis
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Google Chrome browser
+- Python 3.x
+- Required Python packages (install using `pip install -r requirements.txt`)
+
+### Installation
+1. Clone the repository
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Load the Chrome extension:
+   - Open Chrome
+   - Go to `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `extension` folder
+
+### Configuration
+1. Set up your environment variables in `.env` file:
+   ```
+   MISTRAL_API_KEY=your_key_here
+   API_KEY=your_key_here
+   ```
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit a Pull Request.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- GenAI Hackathon for Public Good organizers
+- All contributors and testers
+- Open-source AI community
+
+## Team Members
+
+- Myriam Fogelman
+- Fana Rakotoasibola
+- Johnny Moacdieh
+- Richard Jarry
+
 
 ---
 
-## 🚀 Rendu attendu  
-
-### 🎯 Sélectionnez votre Track  
-
-Votre projet doit s'inscrire dans l'un des **deux tracks** suivants :  
-
-#### 🧠 Track 1 : Algorithmes à Forte Valeur Ajoutée  
-Développez des algorithmes avancés pour relever des défis technologiques fondamentaux.  
-
-Exemples :  
-- 🎙 **Transcription vocale** : Amélioration du Speech-to-Text pour les langues sous-représentées.  
-- 🛰 **Analyse géospatiale** : IA pour la planification urbaine et la gestion des crises.  
-- 📄 **Numérisation de documents** : Amélioration de l'OCR pour les administrations.
-
-### 📝 Informations à renseigner pour l’évaluation  
-
-Merci de compléter ce README avec les éléments suivants : 
-
-##### 🏆 Critères d'évaluation  
-| Critère            | Description | Poids (%) |
-|--------------------|-------------|-----------|
-| 🎯 **Précision**  | Le modèle produit-il des résultats plus fiables et pertinents que les solutions actuelles ? | 25 |
-| ⚡ **Efficacité**  | L’utilisation des ressources informatiques est-elle optimisée sans compromettre la qualité ? | 25 |
-| 💧 **Durabilité**  | Le modèle est-il respectueux de l’environnement et économe en ressources ? | 25 |
-| 📊 **Utilisation des données** | Les données sont-elles intégrées de manière éthique et pertinente ? | 25 |
-
---- 
-
-#### 🛠 Track 2 : Cas d'Usage à Fort Impact avec des APIs  
-Exploitez des APIs comme **Albert** pour concevoir des outils concrets pour l'administration publique.  
-
-Exemples :  
-- 📝 **Automatisation administrative** : Génération automatique de documents et rapports.  
-- 🔍 **Analyse documentaire** : Recherche et résumé intelligent de textes.  
-- 🎯 **Prototypes sur mesure** : Solutions adaptées aux besoins spécifiques identifiés par les équipes.
-
-### 📝 Informations à renseigner pour l’évaluation  
-
-Merci de compléter ce README avec les éléments suivants :  
-
-##### 🏆 Critères d'évaluation  
-| Critère            | Description | Poids (%) |
-|--------------------|-------------|-----------|
-| 🎯 **Pertinence**  | La solution répond-elle à un défi clair du service public ? | 25 |
-| 📈 **Impact**      | Les résultats attendus sont-ils significatifs et mesurables ? | 25 |
-| 🔧 **Faisabilité** | L’implémentation du MVP est-elle réaliste ? | 25 |
-| 🌍 **Scalabilité** | La solution est-elle adaptable et conçue comme un bien commun numérique ? | 25 |
-
----
-
+Made with ❤️ for making the web more accessible to everyone.

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Recorder</title>
+</head>
+<body>
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordingStream = null;
+
+        // Listen for messages from the content script
+        window.addEventListener('message', async (event) => {
+            if (event.data.action === 'startRecording') {
+                startRecording();
+            } else if (event.data.action === 'stopRecording') {
+                stopRecording();
+            }
+        });
+
+        async function startRecording() {
+            try {
+                audioChunks = [];
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                recordingStream = stream;
+                mediaRecorder = new MediaRecorder(stream);
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                    }
+                };
+                
+                mediaRecorder.onstop = async () => {
+                    if (audioChunks.length > 0) {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const formData = new FormData();
+                        formData.append('file', audioBlob, 'recording.wav');
+                        
+                        try {
+                            const response = await fetch('http://localhost:5001/api/stt', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            
+                            const transcription = await response.json();
+                            window.parent.postMessage({ 
+                                action: 'transcriptionComplete', 
+                                text: transcription 
+                            }, '*');
+                            
+                        } catch (error) {
+                            window.parent.postMessage({ 
+                                action: 'transcriptionError', 
+                                error: error.message 
+                            }, '*');
+                        }
+                        
+                        // Stop all tracks
+                        stream.getTracks().forEach(track => track.stop());
+                    }
+                };
+                
+                mediaRecorder.start();
+                window.parent.postMessage({ action: 'recordingStarted' }, '*');
+                
+            } catch (error) {
+                window.parent.postMessage({ 
+                    action: 'recordingError', 
+                    error: error.message 
+                }, '*');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                window.parent.postMessage({ action: 'recordingStopped' }, '*');
+            }
+        }
+    </script>
+</body>
+</html> 
